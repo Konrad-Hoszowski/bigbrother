@@ -13,15 +13,6 @@ function installFiles()	{
 
 }
 
-function createUserFolders(){
-	local install_dir=${1}
-	local prop_file=${2}
-	local group=${3}
-	for i in `cat ${prop_file}`; do
-		install -o $i -g ${group} -d ${install_dir}/${i}
-	done;
-}
-
 #### MAIN #############################################################
 
 #apt get install -y scrot npm
@@ -36,6 +27,4 @@ INSTALL_DIR="/opt/bigbrother"
 useradd -d ${INSTALL_DIR} -G adm -M -U -s /bin/bash ${OWNER} 
 
 installFiles ${INSTALL_DIR} ${OWNER} ${GROUP}
-
-createUserFolders ${INSTALL_DIR} ${1} ${GROUP}
 
