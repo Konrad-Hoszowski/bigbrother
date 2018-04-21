@@ -17,7 +17,7 @@ function setupCronTakeScreen(){
 	local user=${2}
 	local logFile="/tmp/${user}.screens.log"
 	# every minute take a screen
-	cron="*/1 * * * * sudo su -c \"${install_dir}/bin/screens.sh >> ${logFile} 2>&1\" ${user} "
+	cron="*/1 * * * * ${install_dir}/bin/screens.sh ${user} >> ${logFile} 2>&1 "
 	( crontab -l | grep -v -e "screens.*${user}" ; echo "${cron}" ) | crontab - 
 }
 
@@ -28,7 +28,7 @@ function setupCronRemoveOldScreens(){
 	#once and hour remove old files
 	#cron="* */1 * * * sudo su -c \"${install_dir}/bin/removeOldScreens.sh ${user} >> ${logFile} 2>&1\" ${user} "
 	cron="1 * * * * ${install_dir}/bin/removeOldScreens.sh ${user} >> ${logFile} 2>&1  "
-	( crontab -l | grep -v -e "removeOldSceens.*${user}" ; echo "${cron}" ) | crontab - 
+	( crontab -l | grep -v -e "removeOldScreens.*${user}" ; echo "${cron}" ) | crontab - 
 }
 
 function showCronSetup(){
