@@ -1,42 +1,47 @@
 #!/bin/bash
 
-#DEBUG=true
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source ${DIR}/common.sh
 
-function decho (){
-	if [ ! -z "${DEBUG}" ];
-	then
-		echo $*
-	fi	
-}
+readConfig ${CFG_FILE}
 
 
-##################################################################################
-
-echo `date`
-
+#local constants
 SCROT="/usr/bin/scrot"
 SS_FLAGS="-z -q 20 -m"
-SS_MIN_SIZE=22222 #if the screenshot file is smaller the file is not kept. 
-SS_CMD=" if [ \$s -lt $SS_MIN_SIZE ]; then echo Removing \$f \$s; rm \$f; fi;"
-
-DEST_PATH="/opt/bigbrother"
-
-USER=`id -nu`
+SS_CMD="if [ \\\$s -lt $SCREEN_MIN_SIZE ]; then echo Removing \\\$f \\\$s; rm \\\$f; fi;"
 
 function getDisplayNumber(){
 	local user=${1}
-	display_num="`who | grep ${user} | grep  -e '(:[0-9])' | rev | cut -c2`"
-	echo ${display_num}
+	local display_num="`who | grep ${user} | grep  -e '(:[0-9])' | rev | cut -c2`"
+	echo $display_num
 }
 
-DISPLAY_NUM=`getDisplayNumber ${USER}`
+function takeNewScreen(){
+	local screens_dir=${1}
+	local user=${2}
 
-if [ -z "${DISPLAY_NUM}" ];
-then
-	echo "User ${USER} not logged in"
-else
-	SS_FILE="${DEST_PATH}/${USER}/${USER}-screen-%Y-%m-%d-%H_%M.jpg"
-	DISPLAY=:${DISPLAY_NUM} ${SCROT} ${SS_FILE} ${SS_FLAGS} -e "$SS_CMD"
-	decho DISPLAY=:${DISPLAY_NUM} ${SCROT} ${SS_FILE} ${SS_FLAGS} -e "$SS_CMD"
+	local display_num=$(getDisplayNumber ${user})
+	if [ -z "${display_num}" ];
+	then
+		echo "User ${user} not logged in"
+	else
+		ss_file="${screens_dir}/${user}/${user}-screen-%Y-%m-%d-%H_%M.jpg"
+		echo "${screens_dir}/${user}/${user}-screen-%Y-%m-%d-%H_%M.jpg"
+		sudo su -c "DISPLAY=:${display_num} ${SCROT} ${ss_file} ${SS_FLAGS} -e \"$SS_CMD\" " ${user}
+	fi
+}
 
-fi
+#### MAIN #############################################################
+
+#xhost + in .xinitrc
+
+
+usage() { echo "usage: $0 [options] user" && grep " .)\ #" $0; exit 0; }
+[ $# -eq 0 ] && usage
+user=${1}
+
+echo -n "Taking screenshot into: "
+takeNewScreen ${SCREENS_DIR} ${user} 
+
+
