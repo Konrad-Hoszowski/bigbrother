@@ -41,7 +41,7 @@ usage() { echo "usage: $0 [options] user" && grep " .)\ #" $0; exit 0; }
 [ $# -eq 0 ] && usage
 user=${1}
 
-echo -n "Taking screenshot into: "
+echo -n "Taking screenshot at [$(date '+%F %R:%S')] into: "
 takeNewScreen ${SCREENS_DIR} ${user} 
 
 
