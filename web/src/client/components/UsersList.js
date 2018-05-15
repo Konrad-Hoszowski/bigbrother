@@ -44,13 +44,13 @@ export default class UsersList extends React.Component {
     }
 
     return (
-      <div class="row justify-content-md-center">
-        {users.map(user =>
-          <div class="col-md-auto">
-            <button class="btn btn-info" onClick={this.handleClick.bind(this)}  data-key={user.name}>
+      <div className="row justify-content-md-start rounded border border-info mb-1 p-1 bg-white">
+        <span className="btn m-1">Users: </span>
+        {users.map(user =>          
+            <button class="btn btn-info m-1" onClick={this.handleClick.bind(this)} 
+             key={user.name} data-key={user.name}>
               {user.name}
-            </button>
-          </div>
+            </button>         
         )}
       </div>
     );

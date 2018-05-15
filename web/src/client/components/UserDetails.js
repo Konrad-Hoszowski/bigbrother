@@ -60,23 +60,16 @@ export default class UserDetails extends React.Component {
       return <p>{error.message}</p>;
     }
 
-//    var imageFile=(userData!=null)?"/screens/"+userData.name+"/"+userData.lastImage : "null";
-
-    var imageFile=(userData!=null)?"/screens/"+userData.name+"/"+userData.imageFiles[this.state.index] : "null";
+   var imageFile=(userData!=null)?"/screens/"+userData.name+"/"+userData.imageFiles[this.state.index] : "null";
 
     return (
-      <div class="container">
-        <div class="row justify-content-md-center">
-          <div class="col-1">
-            <button class="btn btn-dark" onClick={this.handleNext.bind(this)} >Next</button>
-          </div>
-          
-          <div class="col-1">
-            <button class="btn btn-dark" onClick={this.handlePrev.bind(this)} >Prev</button>
-          </div>
-          <div class="col-8 btn btn-dark">{imageFile}</div>
+      <div className="row justify-content-md-end rounded border border-dark mt-1 bg-white">
+        <div className="p-1">
+          <span className="btn btn-secondary disabled m-1 btn-sm">{imageFile}</span>
+          <button className="btn btn-secondary m-1 btn-sm" onClick={this.handleNext.bind(this)} >Prev</button>
+          <button className="btn btn-secondary m-1 btn-sm" onClick={this.handlePrev.bind(this)} >Next</button>
         </div>
-        <div class="row justify-content-md-center">
+        <div className="pb-2 pl-2 pr-2">
           <Screen imageFile={imageFile} />
         </div>
       </div>

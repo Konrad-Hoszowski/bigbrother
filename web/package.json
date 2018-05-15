@@ -22,6 +22,7 @@
   "scripts": {
     "dev": "node ./dist/main.js",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config webpack.config.js --mode production",
     "compile": "webpack --config webpack.config.js --mode development"
   },
   "repository": {
