@@ -9,7 +9,7 @@ BigBrother makes use of `scrot` and `Node.js`
 ```
 apt-get install -y scrot
 ```
-I use nvm to mange Node.js infrastructure
+I use nvm to manage Node.js infrastructure
 ```
 wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
 ```
