@@ -22,7 +22,7 @@ export default class Layout extends React.Component {
 
   render() {
     return (
-      <div class="container">
+      <div className="container">
         <Header />
         <UsersList changeUser={this.changeUser.bind(this)}/>
         <UserDetails user={this.state.user} />

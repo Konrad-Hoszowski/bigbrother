@@ -27,7 +27,6 @@ export default class UsersList extends React.Component {
 
   handleClick(e) {
     const user = e.target.getAttribute('data-key');
-    console.log(user);
     this.props.changeUser(user);
 
   }
@@ -45,9 +44,9 @@ export default class UsersList extends React.Component {
 
     return (
       <div className="row justify-content-md-start rounded border border-info mb-1 p-1 bg-white">
-        <span className="btn m-1">Users: </span>
+        <span className="btn m-1 btn-sm">Users: </span>
         {users.map(user =>          
-            <button class="btn btn-info m-1" onClick={this.handleClick.bind(this)} 
+            <button className="btn btn-info m-1 btn-sm" onClick={this.handleClick.bind(this)} 
              key={user.name} data-key={user.name}>
               {user.name}
             </button>         
