@@ -19,7 +19,11 @@ function installFiles()	{
 	install -C -D -m 644 ./web/src/* ${install_dir}/web/src
 	install -C -D -m 644 ./web/src/client/* ${install_dir}/web/src/client
 	install -C -D -m 644 ./web/src/client/components/* ${install_dir}/web/src/client/components
-	chown -R ${owner}:${group} ${install_dir}
+	chown ${owner}:${group} ${install_dir}
+	chown ${owner}:${group} ${install_dir}/screens
+	chown -R ${owner}:${group} ${install_dir}/bin
+	chown -R ${owner}:${group} ${install_dir}/config
+	chown -R ${owner}:${group} ${install_dir}/web
 
 }
 
