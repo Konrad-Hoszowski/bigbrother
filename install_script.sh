@@ -12,8 +12,13 @@ function installFiles()	{
 	install -d ${install_dir}/bin
 	install -d ${install_dir}/config
 	install -d ${install_dir}/screens
-	install -C -D  ./bin/* ${install_dir}/bin
-	install -C -D  ./config/* ${install_dir}/config
+	install -d ${install_dir}/web/src/client/components
+	install -C -D -m 755 ./bin/* ${install_dir}/bin
+	install -C -D -m 644 ./config/* ${install_dir}/config
+	install -C -D -m 644 ./web/* ${install_dir}/web
+	install -C -D -m 644 ./web/src/* ${install_dir}/web/src
+	install -C -D -m 644 ./web/src/client/* ${install_dir}/web/src/client
+	install -C -D -m 644 ./web/src/client/components/* ${install_dir}/web/src/client/components
 	chown -R ${owner}:${group} ${install_dir}
 
 }
