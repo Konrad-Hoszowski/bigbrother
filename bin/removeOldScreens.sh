@@ -9,7 +9,7 @@ function removeOldScreens(){
         local screens_dir=${1}
         local user=${2}
 		local keep_num_files=${3}
-        local ssPath="${screens_dir}/${user}/${user}-screen*.jpg"
+        local ssPath="${screens_dir}/${user}/${user}-screen*.png"
 
         filesToRemove=$(expr $(ls -1 ${ssPath} | wc -l) - ${keep_num_files})
         echo "Files to remove: ${filesToRemove}"
