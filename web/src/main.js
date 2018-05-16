@@ -14,7 +14,7 @@ function listSubFolders(folderPath){
 }
 
 function listImageFiles(folderPath){
-	var extension = ".jpg";
+	var extension = ".png";
 	try{
 	    return Fs
 	    .readdirSync(folderPath)

@@ -26,8 +26,8 @@ function takeNewScreen(){
 	then
 		echo "User ${user} not logged in"
 	else
-		ss_file="${screens_dir}/${user}/${user}-screen-%Y-%m-%d-%H_%M.jpg"
-		echo "${screens_dir}/${user}/${user}-screen-%Y-%m-%d-%H_%M.jpg"
+		ss_file="${screens_dir}/${user}/${user}-screen-%Y-%m-%d-%H_%M.png"
+		echo "${screens_dir}/${user}/${user}-screen-%Y-%m-%d-%H_%M.png"
 		sudo su -c "DISPLAY=:${display_num} ${SCROT} ${ss_file} ${SS_FLAGS} -e \"$SS_CMD\" " ${user}
 	fi
 }
